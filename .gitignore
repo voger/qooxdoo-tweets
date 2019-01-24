@@ -7,3 +7,7 @@
 # node-related files
 /node_modules
 npm-debug.log
+
+# vim generated files
+tags
+
