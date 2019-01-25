@@ -29,8 +29,8 @@ qx.Class.define("tweets.MainWindow",
       this.add(toolbar, {row: 0, column: 0, colSpan: 2});
 
       // reload button
-      var reloadButton = new qx.ui.toolbar.Button("Reload");
-      reloadButton.setToolTipText("Reload the tweets.");
+      var reloadButton = new qx.ui.toolbar.Button(this.tr("Reload"));
+      reloadButton.setToolTipText(this.tr("Reload the tweets."));
 
       reloadButton.addListener("execute", function(){
         this.fireEvent("reload");
@@ -41,7 +41,7 @@ qx.Class.define("tweets.MainWindow",
 
 
       // list
-      var list = new qx.ui.form.List();
+      var list = this.__list = new qx.ui.form.List();
       this.add(list, {row: 1, column: 0, colSpan: 2});
 
       layout.setRowFlex(1, 1);
@@ -49,7 +49,7 @@ qx.Class.define("tweets.MainWindow",
 
       // textarea
       var textarea = new qx.ui.form.TextArea();
-      textarea.setPlaceholder("Enter your message here...");
+      textarea.setPlaceholder(this.tr("Enter your message here..."));
 
       textarea.addListener("input", function(e) {
         var value = e.getData();
@@ -59,8 +59,8 @@ qx.Class.define("tweets.MainWindow",
       this.add(textarea, {row: 2, column: 0});
 
       // post button
-      var postButton = new qx.ui.form.Button("Post");
-      postButton.setToolTipText("Post this message on identi.ca");
+      var postButton = new qx.ui.form.Button(this.tr("Post"));
+      postButton.setToolTipText(this.tr("Post this message on identi.ca"));
       postButton.setWidth(60);
       postButton.setEnabled(false);
       postButton.addListener("execute", function() {
@@ -69,6 +69,12 @@ qx.Class.define("tweets.MainWindow",
 
 
       this.add(postButton, {row: 2, column: 1});
-    }
+    },
+    members: {
+      __list: null,
 
+      getList: function(){
+        return this.__list;
+      }
+    }
   });

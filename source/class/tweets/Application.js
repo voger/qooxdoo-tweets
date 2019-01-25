@@ -57,18 +57,66 @@ qx.Class.define("tweets.Application",
         // Document is the application root
         var doc = this.getRoot();
 
+        // service stuff
+        var service = new tweets.IdenticaService();
+
+        service.addListener("changeTweets", function(e) {
+          this.debug(qx.dev.Debug.debugProperties(e.getData()));
+        }, this);
+
+        // main window stuff
         var main = new tweets.MainWindow();
-        main.open();
-        main.moveTo(50, 30);
 
         main.addListener("reload", function() {
-          this.debug("reload");
+          service.fetchTweets();
         }, this);
 
         main.addListener("post", function(e) {
           this.debug("post: " + e.getData());
         }, this);
 
+        // create the controler
+        var controller = new qx.data.controller.List(null, main.getList());
+
+
+        controller.setDelegate({
+          createItem: function(){
+            return new tweets.TweetView();
+          },
+
+          bindItem: function(controler, item, id){
+            controller.bindProperty("text", "post", null, item, id);
+            controller.bindProperty("user.profile_image_url", "icon", null, item, id);
+            controller.bindProperty("created_at", "time", {
+              converter: function(data) {
+                return new Date(data);
+              }
+            }, item, id);
+          },
+          configureItem : function(item) {
+            item.getChildControl("icon").setWidth(48);
+            item.getChildControl("icon").setHeight(48);
+            item.getChildControl("icon").setScale(true);
+            item.setMinHeight(52);
+          }
+        });
+        service.bind("tweets", controller, "model");
+
+        this.__loginWindow = new tweets.LoginWindow();
+
+        this.__loginWindow.addListener("changeLoginData", function(ev) {
+          var loginData = ev.getData();
+          service.fetchTweets(loginData.username, loginData.password);
+        });
+
+        this.__loginWindow.moveTo(320,30);
+        this.__loginWindow.open();
+
+        main.open();
+        main.moveTo(50, 30);
+
+        // kickstart
+        service.fetchTweets();
       }
     }
   });
