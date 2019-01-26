@@ -7,9 +7,7 @@
    Authors:
 
 ************************************************************************ */
-
-qx.Theme.define("tweets.theme.Theme",
-{
+qx.Theme.define("tweets.theme.Theme", {
   meta :
   {
     color : tweets.theme.Color,

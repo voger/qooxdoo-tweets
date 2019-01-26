@@ -11,22 +11,38 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: tweets/MainWindow.js:32
+#: tweets/MainWindow.js:37
 msgid "Reload"
 msgstr "Επαναφόρτωση"
 
-#: tweets/MainWindow.js:33
+#: tweets/MainWindow.js:38
 msgid "Reload the tweets."
 msgstr "Επαναφορτώστε τα τιτιβίσμτα"
 
-#: tweets/MainWindow.js:52
+#: tweets/MainWindow.js:47 tweets/SettingsWindow.js:6
+msgid "Preferences"
+msgstr "Πρωτιμίσεις"
+
+#: tweets/MainWindow.js:49
+msgid "Change the application settings"
+msgstr "Αλλάξτε τις ρυθμίσεις της εφαρμογής"
+
+#: tweets/MainWindow.js:73
 msgid "Enter your message here..."
 msgstr "Εισάγετε το μήνυμα σας εδώ..."
 
-#: tweets/MainWindow.js:62
+#: tweets/MainWindow.js:86
 msgid "Post"
 msgstr "Ανάρτιση"
 
-#: tweets/MainWindow.js:63
+#: tweets/MainWindow.js:87
 msgid "Post this message on identi.ca"
 msgstr "Αναρτίστε αυτό το μήνυμα στο identi.ca"
+
+#: tweets/SettingsWindow.js:10
+msgid "Language"
+msgstr "Γλώσσα"
+
+#: tweets/SettingsWindow.js:16
+msgid "$$languagename"
+msgstr "Greek"
